@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#00ff88">
+  <title>City Tycoon ULTRA v4</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+
+</head>
+
+<body>
+
+  <!-- ================= TOP HUD ================= -->
+  <div class="topbar">
+
+    <div class="stat">💰 <span id="money">100</span></div>
+    <div class="stat">👥 <span id="population">0</span></div>
+    <div class="stat">⚡ <span id="energy">0</span></div>
+    <div class="stat">😊 <span id="happiness">50</span></div>
+    <div class="stat">🏙️ <span id="level">1</span></div>
+
+  </div>
+
+  <!-- ================= MAIN LAYOUT ================= -->
+  <div class="game-container">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <div class="panel left-panel">
+
+      <h3>🏗️ Строительство</h3>
+
+      <button onclick="setMode('house')">🏠 Дом</button>
+      <button onclick="setMode('apartment')">🏢 Апартаменты</button>
+      <button onclick="setMode('shop')">🏪 Магазин</button>
+      <button onclick="setMode('factory')">🏭 Завод</button>
+      <button onclick="setMode('park')">🌳 Парк</button>
+
+      <hr>
+
+      <h3>🛣️ Инфраструктура</h3>
+      <button onclick="setMode('road')">🚧 Дорога</button>
+      <button onclick="setMode('traffic_light')">🚦 Светофор</button>
+
+      <hr>
+
+      <h3>🏙️ Районы</h3>
+      <button onclick="setZone('residential')">🟩 Жилой</button>
+      <button onclick="setZone('commercial')">🟨 Бизнес</button>
+      <button onclick="setZone('industrial')">🟥 Индустрия</button>
+
+      <hr>
+
+      <h3>🔍 Камера</h3>
+      <button onclick="zoomIn()">➕ Zoom +</button>
+      <button onclick="zoomOut()">➖ Zoom -</button>
+
+      <hr>
+
+      <h3>⚙️ Инструменты</h3>
+      <button onclick="setMode('destroy')">💣 Снести</button>
+      <button onclick="setMode(null)">❌ Выкл</button>
+
+    </div>
+
+    <!-- ================= MAP ================= -->
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <div class="panel right-panel">
+
+      <h3>📊 Город</h3>
+
+      <button onclick="saveGame()">💾 Save</button>
+      <button onclick="loadGame()">📂 Load</button>
+
+      <hr>
+
+      <h3>📌 Инфо</h3>
+      <div id="info">
+        🏙️ Симуляция города v4<br>
+        NPC + районы + транспорт
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #0e1016;
+    color: white;
+    overflow: hidden;
+}
+
+/* ================= TOP BAR ================= */
+.topbar {
+    height: 52px;
+    background: #1a1f2b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+    border-bottom: 1px solid #2b3242;
+}
+
+.stat {
+    background: #2a3142;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* ================= LAYOUT ================= */
+.game-container {
+    display: flex;
+    height: calc(100vh - 52px);
+}
+
+/* ================= PANELS ================= */
+.panel {
+    width: 240px;
+    background: #151a24;
+    padding: 12px;
+    overflow-y: auto;
+    border-right: 1px solid #2b3242;
+}
+
+.right-panel {
+    border-left: 1px solid #2b3242;
+    border-right: none;
+}
+
+.panel h3 {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #b8c2d6;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: #2b3242;
+    margin: 10px 0;
+}
+
+/* ================= BUTTONS ================= */
+button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #2a3142;
+    color: white;
+    cursor: pointer;
+    transition: 0.15s;
+    font-size: 13px;
+}
+
+button:hover {
+    background: #3a445a;
+    transform: scale(1.03);
+}
+
+/* ================= MAP WRAPPER (ZOOM SUPPORT) ================= */
+.map-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    overflow: auto;
+    background: #0a0c12;
+    padding: 10px;
+}
+
+/* ================= MAP ================= */
+#map {
+    display: grid;
+    grid-template-columns: repeat(25, 40px);
+    grid-auto-rows: 40px;
+    gap: 2px;
+    padding: 12px;
+
+    background: #111623;
+    border-radius: 12px;
+
+    transform-origin: center;
+    transition: 0.2s;
+}
+
+/* ================= CELLS ================= */
+.cell {
+    width: 40px;
+    height: 40px;
+    background: #1e2433;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 5px;
+    position: relative;
+}
+
+/* hover */
+.cell:hover {
+    background: #2a3347;
+    transform: scale(1.05);
+}
+
+/* ================= 🏙️ ZONES ================= */
+.cell[data-zone="residential"] {
+    background: #2f7a4a;
+}
+
+.cell[data-zone="commercial"] {
+    background: #d6a43c;
+}
+
+.cell[data-zone="industrial"] {
+    background: #8b4cd6;
+}
+
+/* ================= 🛣️ ROAD SYSTEM (3 LANES) ================= */
+
+/* LEFT PEDESTRIAN LANE */
+.cell.road-left {
+    background: #232833;
+}
+
+/* CENTER MAIN ROAD */
+.cell.road-center {
+    background: #1d222c;
+    position: relative;
+}
+
+/* RIGHT PEDESTRIAN LANE */
+.cell.road-right {
+    background: #232833;
+}
+
+/* ================= ROAD DASH LINE ================= */
+.cell.road-center::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: repeating-linear-gradient(180deg,
+            #ffffff 0px,
+            #ffffff 8px,
+            transparent 8px,
+            transparent 16px);
+
+    opacity: 0.9;
+}
+
+/* ================= NPC LANE VISUAL ================= */
+.cell.road-left::after,
+.cell.road-right::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-left: 1px dashed rgba(255, 255, 255, 0.1);
+    border-right: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ================= BUILDINGS ================= */
+.cell[data-type="house"] {
+    background: #2f7a4a;
+}
+
+.cell[data-type="apartment"] {
+    background: #3c7ed6;
+}
+
+.cell[data-type="shop"] {
+    background: #d6a43c;
+}
+
+.cell[data-type="factory"] {
+    background: #8b4cd6;
+}
+
+.cell[data-type="park"] {
+    background: #2f9a5a;
+}
+
+/* ================= PEOPLE INSIDE BUILDINGS ================= */
+.cell .people {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+
+/* ================= INFO ================= */
+#info {
+    font-size: 12px;
+    color: #9aa6b2;
+    line-height: 1.4;
+}
+
+/* ================= SCROLLBAR ================= */
+.map-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.map-wrapper::-webkit-scrollbar-thumb {
+    background: #2a3142;
+    border-radius: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+    .panel {
+        width: 180px;
+    }
+
+    #map {
+        transform: scale(0.9);
+    }
+}
